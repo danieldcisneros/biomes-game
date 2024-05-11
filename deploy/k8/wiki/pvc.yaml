@@ -9,3 +9,15 @@ spec:
     requests:
       storage: 10Gi
   storageClassName: premium-rwo
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: redis-replica-io
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: premium-rwo
