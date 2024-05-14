@@ -18,7 +18,7 @@ metadata:
   labels:
     app.kubernetes.io/name: kube-state-metrics
     app.kubernetes.io/version: 2.3.0
-  namespace: gmp-public
+  namespace: metrics-server
   name: kube-state-metrics
 spec:
   replicas: 1
@@ -89,7 +89,7 @@ metadata:
   labels:
     app.kubernetes.io/name: kube-state-metrics
     app.kubernetes.io/version: 2.3.0
-  namespace: gmp-public
+  namespace: metrics-server
   name: kube-state-metrics
 spec:
   clusterIP: None
@@ -106,7 +106,7 @@ spec:
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  namespace: gmp-public
+  namespace: metrics-server
   name: kube-state-metrics
   labels:
     app.kubernetes.io/name: kube-state-metrics
@@ -115,23 +115,23 @@ metadata:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: gmp-public:kube-state-metrics
+  name: metrics-server:kube-state-metrics
   labels:
     app.kubernetes.io/name: kube-state-metrics
     app.kubernetes.io/version: 2.3.0
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: gmp-public:kube-state-metrics
+  name: metrics-server:kube-state-metrics
 subjects:
   - kind: ServiceAccount
-    namespace: gmp-public
+    namespace: metrics-server
     name: kube-state-metrics
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: gmp-public:kube-state-metrics
+  name: metrics-server:kube-state-metrics
   labels:
     app.kubernetes.io/name: kube-state-metrics
     app.kubernetes.io/version: 2.3.0
@@ -265,7 +265,7 @@ apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
   name: kube-state-metrics
-  namespace: gmp-public
+  namespace: metrics-server
 spec:
   maxReplicas: 10
   minReplicas: 1
@@ -315,7 +315,7 @@ spec:
 apiVersion: monitoring.googleapis.com/v1
 kind: PodMonitoring
 metadata:
-  namespace: gmp-public
+  namespace: metrics-server
   name: kube-state-metrics
   labels:
     app.kubernetes.io/name: kube-state-metrics
