@@ -259,9 +259,10 @@ rules:
       - list
       - watch
 ---
-# TODO(pintohutch): bump to autoscaling/v2 when 1.23 is the default in the GKE
+# NEW: TODO(danieldcisneros): switch back to autoscaling/v2beta2 if v2 doesn't work
+# OLD: TODO(pintohutch): bump to autoscaling/v2 when 1.23 is the default in the GKE
 # stable release channel.
-apiVersion: autoscaling/v2beta2
+apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: kube-state-metrics
